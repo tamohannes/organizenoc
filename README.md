@@ -14,6 +14,11 @@ This Chromium extension enables users to easily add and update arXiv paper infor
 
 This Chromium extension allows users to extract highlights from a PDF file, which can be downloaded using the paperնոց extension, and automatically add them to their Notion database. This feature provides a convenient and efficient way to manage research-related information in one centralized location.
 
+## artashնոց
+
+A hole-in-the-wall-style spot in Yerevan, Armenia where the best pork Shawarma wrap in town is served.
+It's a place for pilgrimage for many and a real institution that deserves recogntion.
+
 # Setup steps
 
 To set up the backend server:
