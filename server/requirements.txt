@@ -1,0 +1,5 @@
+wget
+PyMuPDF
+fitz
+fastapi
+uvicorn[standard]

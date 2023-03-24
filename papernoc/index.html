@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="card" style="width: 30rem;">
+            <div class="card-content">
+              <div class="media is-align-items-center">
+                <div class="media-content">
+                    <p class="is-size-4">paperնոց</p>
+                </div>
+                <div class="media-right">
+                    <span id="notion_tag" class="tag is-light">Notion</span>
+                    <span id="arxiv_tag" class="tag is-light">arXiv</span>
+                </div>
+              </div>
+          
+        
+            <progress id="progress_bar" class="progress is-small is-primary" max="100">15%</progress>
+
+            
+            <div style="display: none; text-align: center;" id="projects_list" class="field">
+                <label class="label" style="font-weight: 300;">add to a project</label>
+                <div class="control">
+                  <div class="select is-success mb-4">
+                    <select id="project_select">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+            <div style="display: none;" id="present_message" class="mb-4">the paper is present in the database:
+                <p id="paper_title" class="has-background-success-light p-1" style="border-radius:4px; font-family: 'Lucida Grande';"></p>
+            </div>
+
+            <div style="text-align: center;">
+                <button style="display: none;" class="button is-info" id="update_button">
+                    <span class="icon is-small"><i class="fas fa-sync fa-spin"></i></span>
+                    <span>update</span>
+                </button>
+                <button style="display: none;" class="button is-success" id="add_button">
+                    <span class="icon is-small"><i class="fas fa-check fa-flip"></i></span>
+                    <span>create</span>
+                </button>
+
+                <div style="display: none;" id="download_paper_container">
+                    <label class="checkbox mt-3">
+                        <input type="checkbox" id="download_paper">
+                        download the paper</a>
+                    </label>
+                </div>
+
+            </div>
+            <div id="error" class="has-background-danger-light mt-2 pl-2" style="border-radius: 4px;"></div>
+            </div>
+          </div>
+
+        <script src="scripts/app.js"></script>
+        <script src="scripts/paper.js"></script>
+        <script src="resources/keys.js"></script>
+        <script src="scripts/platforms/arxiv.js"></script>
+        <script src="scripts/notion.js"></script>
+        <script src="scripts/fa.js"></script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{
+    "name": "paperնոց",
+    "version": "1.0.0",
+    "description": "store arxiv paper in notion database",
+    "manifest_version": 3,
+    "author": "Hovhannes Tamoyan",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Paperնոց",
+        "default_icon": "resources/icon.png"
+    },
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": ["https://api.notion.com/v1/*"],
+    "options_page": "options.html",
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": false
+    }
+}

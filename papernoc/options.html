@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="card" style="width: 30rem;">
+            <div class="card-content">
+              <div class="media is-align-items-center">
+                <div class="media-content">
+                    <p class="is-size-4">paperնոց options</p>
+                </div>
+              </div>
+        
+            <div>
+                <label for="default_documents_dir">Default documents dir</label>
+                <input id="default_documents_dir" name="default_documents_dir" class="input mb-2" type="text" placeholder="Default documents dir" />
+                <div style="text-align: center;">
+                    <button class="button is-success" id="set_button">
+                        <span class="icon is-small"><i class="fas fa-check fa-flip"></i></span>
+                        <span>set</span>
+                    </button>
+                </div>
+            </div>
+            <div id="status" class="has-background-success-light mt-2 pl-2" style="border-radius: 4px;"></div>
+            <div id="error" class="has-background-danger-light mt-2 pl-2" style="border-radius: 4px;"></div>
+            </div>
+          </div>
+
+        <script src="scripts/options.js"></script>
+        <script src="scripts/fa.js"></script>
+    </body>
+</html>
