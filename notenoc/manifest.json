@@ -9,11 +9,14 @@
     "default_title": "Noteնոց",
     "default_icon": "resources/icon.png"
   },
-  "permissions": ["scripting", "activeTab", "storage"],
-  "host_permissions": ["http://localhost:8214/*", "https://api.notion.com/v1/*"],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self';  object-src http://localhost;"
-  },
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.notion.com/v1/*"
+  ],
   "options_page": "options.html",
   "options_ui": {
     "page": "options.html",

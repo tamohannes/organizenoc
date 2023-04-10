@@ -3,6 +3,7 @@ class Notion {
     try {
       this.authToken = notion_key;
       this.databaseId = notion_database_id;
+      this.serverPort = server_port
 
       document.getElementById("notion_tag").classList.add("is-success");
       document.getElementById("notion_tag").classList.remove("is-danger");
@@ -26,7 +27,7 @@ class Notion {
         document_path: document_path.value,
         page_title: page_title.value,
       };
-      await fetch("http://127.0.0.1:8214/add_note", {
+      await fetch(`http://127.0.0.1:${this.serverPort}/add_note`, {
         method: "POST",
         headers: new Headers({
           // "Authorization": "Bearer MY_KEY",
