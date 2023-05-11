@@ -127,7 +127,7 @@ class ArXiv {
 
   cleanup(string) {
     return string
-      .replace(/(\r\n|\n|\r)/gm, "")
+      .replace(/(\r\n|\n|\r)/gm, " ")
       .replace(/\s+/g, " ")
       .trim();
   };  
