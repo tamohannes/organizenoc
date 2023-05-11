@@ -1,12 +1,12 @@
 {
-  "name": "noteնոց",
+  "name": "notenoc",
   "version": "1.0.0",
   "description": "store pdf notes in notion database",
   "manifest_version": 3,
   "author": "Hovhannes Tamoyan",
   "action": {
     "default_popup": "index.html",
-    "default_title": "Noteնոց",
+    "default_title": "Notenoc",
     "default_icon": "resources/icon.png"
   },
   "permissions": [

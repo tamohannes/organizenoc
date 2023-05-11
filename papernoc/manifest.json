@@ -1,12 +1,12 @@
 {
-    "name": "paperնոց",
+    "name": "papernoc",
     "version": "1.0.0",
     "description": "store arxiv paper in notion database",
     "manifest_version": 3,
     "author": "Hovhannes Tamoyan",
     "action": {
         "default_popup": "index.html",
-        "default_title": "Paperնոց",
+        "default_title": "Papernoc",
         "default_icon": "resources/icon.png"
     },
     "permissions": [
