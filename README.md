@@ -10,9 +10,13 @@ While the extensions can be used separately, we strongly recommend using both of
 
 This Chromium extension enables users to easily add and update arXiv paper information in their Notion database, streamlining the process of managing academic materials and keeping all research-related information in one centralized location.
 
+<img src="https://github.com/tmynn/resume/blob/main/storage/papernoc_demo.gif"/>
+
 ## notenoc
 
 This Chromium extension allows users to extract highlights from a PDF file, which can be downloaded using the papernoc extension, and automatically add them to their Notion database. This feature provides a convenient and efficient way to manage research-related information in one centralized location.
+
+<img src="https://github.com/tmynn/resume/blob/main/storage/notenoc_demo.gif"/>
 
 # Setup steps
 
