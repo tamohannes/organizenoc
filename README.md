@@ -18,6 +18,11 @@ This Chromium extension allows users to extract highlights from a PDF file, whic
 
 <img src="demos/notenoc_demo.gif"/>
 
+## artashնոց
+
+A hole-in-the-wall-style spot in Yerevan, Armenia where the best pork Shawarma wrap in town is served.
+It's a place for pilgrimage for many and a real institution that deserves recogntion.
+
 # Setup steps
 
 To set up the backend server:
