@@ -1,4 +1,4 @@
-# organizenoc
+# organizenoc 🗂️
 
 These Chromium extensions enable users to seamlessly add and update research paper information in their Notion database, making it easy to keep track of all their academic materials in one organized location.
 
