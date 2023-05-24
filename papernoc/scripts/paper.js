@@ -24,7 +24,7 @@ class Paper {
   }
 
   get_project() {
-    return this.paper.properties.Project.select.name;
+   return (this.paper.properties.Project.select == null) ? "" : this.paper.properties.Project.select.name;
   }
 
   async add() {
