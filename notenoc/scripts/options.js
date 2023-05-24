@@ -10,9 +10,9 @@ function save_options() {
     function () {
       var status = document.getElementById("status");
       status.textContent = "option saved";
-      // setTimeout(function () {
-      //   status.textContent = "";
-      // }, 1500);
+      setTimeout(function () {
+        status.textContent = "";
+      }, 1500);
     }
   );
 }

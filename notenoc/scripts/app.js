@@ -7,7 +7,6 @@ async function getCurrentTab() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const tab = await getCurrentTab();
-  tab.url="https://arxiv.org/abs/2305.14342v1"
 
   const arxiv = new ArXiv();
   await arxiv.init(tab.url);

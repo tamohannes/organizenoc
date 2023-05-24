@@ -27,9 +27,9 @@ class Paper {
       document.getElementById("add_button").innerHTML =
         '<i class="fas fa-check-circle"></i>';
 
-      // setTimeout(() => {
-      //   window.close();
-      // }, 1500);
+      setTimeout(() => {
+        window.close();
+      }, 1500);
     } catch (e) {
       document.getElementById("error").innerHTML = e;
     }
