@@ -8,15 +8,14 @@ async function getCurrentTab() {
 document.addEventListener("DOMContentLoaded", async () => {
   const tab = await getCurrentTab();
 
-  const arxiv = new ArXiv();
-  await arxiv.init(tab.url);
-  arxiv.isValidURL();
+  const platform = Platform.get_platform(tab.url);
+  await platform.init(tab.url);
 
   let notion = new Notion();
   await notion.init();
 
   const paper = new Paper();
-  await paper.init(notion, arxiv.metadata);
+  await paper.init(notion, platform.metadata);
 
   try {
     if (await paper.is_present()) {

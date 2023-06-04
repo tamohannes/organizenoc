@@ -14,7 +14,10 @@ class Paper {
   }
 
   get_project() {
-    return (this.paper.properties.Project.select == null) ? "" : this.paper.properties.Project.select.name;
+    if (this.paper === undefined || this.paper.properties.Project.select === null)
+      return ""
+    else
+      return this.paper.properties.Project.select.name;
   }
 
   async add_notes() {

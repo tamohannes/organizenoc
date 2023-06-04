@@ -1,32 +1,21 @@
-class ArXiv {
-  async init(tab_url) {
-    try {
-      this.tab_url = tab_url;
-      this.metadata = await this.getMetadata();
-    } catch (err) {
-      document.getElementById("error").innerHTML = err;
-      console.log(err);
-    }
-  }
+const arxiv_origin = "https://arxiv.org";
 
-  isValidURL() {
-    let is_valid = this._isValidURL();
+class ArXiv extends Platform {
+  static isValidURL(tab_url) {
+    let is_valid = ArXiv._isValidURL(tab_url);
     if (is_valid) {
       document.getElementById("arxiv_tag").classList.add("is-success");
       document.getElementById("arxiv_tag").classList.remove("is-danger");
 
       document.getElementById("add_button").disabled = false;
-    } else {
-      document.getElementById("arxiv_tag").classList.add("is-danger");
-      document.getElementById("arxiv_tag").classList.remove("is-success");
-
-      document.getElementById("add_button").disabled = true;
+      document.getElementById("aclanthology_tag").style.display = "none";
     }
+    return is_valid
   }
 
-  _isValidURL() {
-    const u = new URL(this.tab_url);
-    if (u.origin == "https://arxiv.org") {
+  static _isValidURL(tab_url) {
+    const u = new URL(tab_url);
+    if (u.origin == arxiv_origin) {
       const pathname_split = u.pathname.split("/");
       if (pathname_split.length == 3) {
         if (pathname_split[1] == "pdf") {
@@ -45,29 +34,25 @@ class ArXiv {
   }
 
   async getMetadata() {
-    const id = this.parseIDFromArxivURL();
+    const id = this.parseIDFromURL();
     const xml = await this.getXMLFromID(id);
     const metadata = this.getMetadataFromXML(xml);
     return metadata;
   }
 
-  parseIDFromArxivURL() {
+  parseIDFromURL() {
     const u = new URL(this.tab_url);
-    if (u.origin == "https://arxiv.org") {
-      const pathname_split = u.pathname.split("/");
-      if (pathname_split.length == 3) {
-        if (pathname_split[1] == "pdf") {
-          return pathname_split[2].split(".pdf")[0];
-        } else if (pathname_split[1] == "abs") {
-          return pathname_split[2];
-        } else {
-          throw Error("not a valid paper link");
-        }
+    const pathname_split = u.pathname.split("/");
+    if (pathname_split.length == 3) {
+      if (pathname_split[1] == "pdf") {
+        return pathname_split[2].split(".pdf")[0];
+      } else if (pathname_split[1] == "abs") {
+        return pathname_split[2];
       } else {
-        throw Error("not a valid paper link");
+        throw Error("Not a valid paper link!");
       }
     } else {
-      throw Error("not an arXiv link");
+      throw Error("Not a valid paper link!");
     }
   }
 
@@ -130,5 +115,5 @@ class ArXiv {
       .replace(/(\r\n|\n|\r)/gm, " ")
       .replace(/\s+/g, " ")
       .trim();
-  };  
+  };
 }
