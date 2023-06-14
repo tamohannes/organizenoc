@@ -24,14 +24,13 @@ class ACLAnthology extends Platform {
     }
 
     async getMetadata() {
-        const file_id = this.parseFileIDFromURL();
-        const file_url = await this.getXMLFromFileID(file_id);
-        const xml = await this.getXMLFromFileURL(file_url);
-        const paperdata = this.getPaperData(xml);
-        const metadata = this.getMetadataFromXML(paperdata);
+        this.file_id = this.parseFileIDFromURL();
+        this.file_url = await this.getXMLFromFileID();
+        this.xml = await this.getXMLFromFileURL();
+        this.paper_info = await this.parsePaperInfoFromURL();
+        this.paperdata = this.getPaperData();
 
-        metadata["published_date"] = this.getPaperPublicationDate(xml);
-        return metadata;
+        return this.getMetadataFromXML();
     }
 
     parsePaperInfoFromURL() {
@@ -49,51 +48,47 @@ class ACLAnthology extends Platform {
         return u.pathname.split("/")[1].split("-")[0]
     }
 
-    async getXMLFromFileID(file_id) {
-        const file_url = `https://api.github.com/repos/acl-org/acl-anthology/contents/data/xml/${file_id}.xml`
+    async getXMLFromFileID() {
+        const file_url = `https://api.github.com/repos/acl-org/acl-anthology/contents/data/xml/${this.file_id}.xml`
         const resp = await fetch(file_url)
         const json = await resp.json();
         return json.download_url
     }
 
-    async getXMLFromFileURL(file_url) {
-        const resp = await fetch(file_url)
+    async getXMLFromFileURL() {
+        const resp = await fetch(this.file_url)
         const text = await resp.text()
         const data = new window.DOMParser().parseFromString(text, "text/xml")
         return data
     }
 
-    getPaperData(xml) {
-        const paper_info = this.parsePaperInfoFromURL();
-
-        return xml.evaluate(
-            `/collection/volume[@id="${paper_info['venue']}"]/paper[@id="${paper_info['id']}"]`,
-            xml,
+    getPaperData() {
+        return this.xml.evaluate(
+            `/collection/volume[@id="${this.paper_info['venue']}"]/paper[@id="${this.paper_info['id']}"]`,
+            this.xml,
             null,
             XPathResult.FIRST_ORDERED_NODE_TYPE,
             null,
         ).singleNodeValue
     }
 
-    getPaperPublicationDate(xml) {
-        const paper_info = this.parsePaperInfoFromURL();
-
-        return xml.evaluate(
-            `/collection/volume[@id="${paper_info['venue']}"]`,
-            xml,
+    getPaperPublicationDate() {
+        return this.xml.evaluate(
+            `/collection/volume[@id="${this.paper_info['venue']}"]`,
+            this.xml,
             null,
             XPathResult.FIRST_ORDERED_NODE_TYPE,
             null,
         ).singleNodeValue.getAttribute("ingest-date")
     }
 
-    getMetadataFromXML(xml) {
+    getMetadataFromXML() {
         let metadata = {
             authors: [],
             categories: [],
         };
 
-        xml.childNodes.forEach((entry) => {
+        this.paperdata.childNodes.forEach((entry) => {
             switch (entry.tagName) {
                 case "title":
                     metadata["title"] = this.cleanup_title(entry.innerHTML);
@@ -105,7 +100,8 @@ class ACLAnthology extends Platform {
                     metadata["authors"].push(this.cleanup_author(entry.innerHTML));
                     break;
                 case "bibkey":
-                    metadata["bibkey"] = entry.innerHTML
+                    metadata["bib_key"] = entry.innerHTML
+                    metadata["bib_tex"] = ""
                     break;
                 case "doi":
                     metadata["doi"] = entry.innerHTML
@@ -116,6 +112,8 @@ class ACLAnthology extends Platform {
                     break;
             }
         });
+
+        metadata["published_date"] = this.getPaperPublicationDate(this.xml);
 
         return metadata;
     }

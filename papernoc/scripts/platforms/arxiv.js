@@ -34,10 +34,10 @@ class ArXiv extends Platform {
   }
 
   async getMetadata() {
-    const id = this.parseIDFromURL();
-    const xml = await this.getXMLFromID(id);
-    const metadata = this.getMetadataFromXML(xml);
-    return metadata;
+    this.id = this.parseIDFromURL();
+    this.xml = await this.getXMLFromID(this.id);
+
+    return this.getMetadataFromXML(this.xml);
   }
 
   parseIDFromURL() {
@@ -64,13 +64,45 @@ class ArXiv extends Platform {
     return data;
   }
 
+  keepLowerLettersOnly(input) {
+    var output = "";
+    for (var i = 0; i < input.length; i++) {
+      if (input.charCodeAt(i) <= 122 && input.charCodeAt(i) >= 97) {
+        output += input.charAt(i);
+      }
+    }
+    return output;
+  }
+
+  getBibInfo(metadata) {
+    let first_author_surname = metadata["authors"][0].split(" ").pop().toLowerCase()
+    let year = metadata["updated_date"].split("-")[0]
+    let title_first_word = this.keepLowerLettersOnly(metadata["title"].split(" ")[0].toLowerCase())
+    let authors = metadata["authors"].join(" and ")
+
+    let bib_key = `${first_author_surname}${year}${title_first_word}`
+
+    const bib_tex = `@article{${bib_key},
+  title={${metadata["title"]}},
+  author={${authors}},
+  year={${year}},
+  eprint={${metadata["paper_id"]}},
+  journal={arXiv preprint arXiv:${metadata["paper_id"]}},
+}`
+
+    return {
+      bib_key: bib_key,
+      bib_tex: bib_tex
+    }
+  }
+
   getMetadataFromXML(xml) {
     const entries = [...xml.getElementsByTagName("entry")[0].children];
     let metadata = {
+      paper_id: this.id,
       authors: [],
       categories: [],
     };
-
     entries.forEach((entry) => {
       switch (entry.tagName) {
         case "id":
@@ -106,6 +138,9 @@ class ArXiv extends Platform {
           break;
       }
     });
+
+    metadata["bib_tex"] = this.getBibInfo(metadata)["bib_tex"]
+    metadata["bib_key"] = this.getBibInfo(metadata)["bib_key"]
 
     return metadata;
   }

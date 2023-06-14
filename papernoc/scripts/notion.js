@@ -94,6 +94,18 @@ class Notion {
             { type: "text", text: { content: metadata["authors"].join(", ") } },
           ],
         },
+        bibKey: {
+          type: "rich_text",
+          rich_text: [
+            { type: "text", text: { content: metadata["bib_key"] } },
+          ],
+        },
+        bibTex: {
+          type: "rich_text",
+          rich_text: [
+            { type: "text", text: { content: metadata["bib_tex"] } },
+          ],
+        },
         URL: {
           type: "url",
           url: metadata["paper_link"],
@@ -143,6 +155,18 @@ class Notion {
           type: "rich_text",
           rich_text: [
             { type: "text", text: { content: metadata["authors"].join(", ") } },
+          ],
+        },
+        bibKey: {
+          type: "rich_text",
+          rich_text: [
+            { type: "text", text: { content: metadata["bib_key"] } },
+          ],
+        },
+        bibTex: {
+          type: "rich_text",
+          rich_text: [
+            { type: "text", text: { content: metadata["bib_tex"] } },
           ],
         },
         URL: {
