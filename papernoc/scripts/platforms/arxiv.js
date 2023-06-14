@@ -102,6 +102,7 @@ class ArXiv extends Platform {
       paper_id: this.id,
       authors: [],
       categories: [],
+      doi: ""
     };
     entries.forEach((entry) => {
       switch (entry.tagName) {

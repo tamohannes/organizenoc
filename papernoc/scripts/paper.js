@@ -90,7 +90,8 @@ class Paper {
     });
 
     let body = {
-      document_path: storage_values.default_documents_dir + "/" + project_name,
+      file_dir: storage_values.default_documents_dir + "/" + project_name,
+      file_name: this.metadata["bib_key"],
       pdf_link: this.metadata["pdf_link"],
     };
     await fetch("http://127.0.0.1:8124/save_paper", {

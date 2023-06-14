@@ -44,18 +44,19 @@ def add_not(item: ItemNote):
 
 
 class ItemPaper(BaseModel):
-    document_path: Path
+    file_dir: Path
+    file_name: str
     pdf_link: str
 
 
 @app.post("/save_paper")
 def save_paper(item: ItemPaper):
     try:
-        os.makedirs(item.document_path, exist_ok=True)
-        if not item.document_path.joinpath(
-            Path(item.pdf_link).stem + Path(item.pdf_link).suffix
-        ).is_file():
-            wget.download(url=item.pdf_link, out=str(item.document_path))
+        os.makedirs(item.file_dir, exist_ok=True)
+        file_path = Path(item.file_dir).joinpath(item.file_name + Path(item.pdf_link).suffix)
+        
+        if not file_path.is_file():
+            wget.download(url=item.pdf_link, out=str(file_path))
         return JSONResponse(content={"status": True})
     except:
         return JSONResponse(content={"status": False})
