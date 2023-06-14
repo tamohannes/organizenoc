@@ -136,6 +136,9 @@ class ArXiv extends Platform {
         case "category":
           metadata["categories"].push(entry.attributes.term.value);
           break;
+        case "arxiv:doi":
+          metadata["doi"] = entry.innerHTML;
+          break;
       }
     });
 

@@ -106,6 +106,12 @@ class Notion {
             { type: "text", text: { content: metadata["bib_tex"] } },
           ],
         },
+        doi: {
+          type: "rich_text",
+          rich_text: [
+            { type: "text", text: { content: metadata["doi"] } },
+          ],
+        },
         URL: {
           type: "url",
           url: metadata["paper_link"],
@@ -167,6 +173,12 @@ class Notion {
           type: "rich_text",
           rich_text: [
             { type: "text", text: { content: metadata["bib_tex"] } },
+          ],
+        },
+        doi: {
+          type: "rich_text",
+          rich_text: [
+            { type: "text", text: { content: metadata["doi"] } },
           ],
         },
         URL: {
