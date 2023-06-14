@@ -8,7 +8,7 @@ While the extensions can be used separately, we strongly recommend using both of
 
 ## papernoc 📚
 
-This Chromium extension enables users to easily add and update arXiv and ACL Anthology paper information in their Notion database, streamlining the process of managing academic materials and keeping all research-related information in one centralized location.
+This Chromium extension enables users to easily add and update `arXiv` and `ACL Anthology` paper information in their Notion database, streamlining the process of managing academic materials and keeping all research-related information in one centralized location.
 
 <img alt="papernoc demostration" src="demos/papernoc_demo.gif"/>
 
