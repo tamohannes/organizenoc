@@ -82,7 +82,7 @@ class ACLAnthology extends Platform {
     }
 
     getPaperPublicationDate() {
-        if (parseInt(this.paper_info['venue']) === NaN) {
+        if (isNaN(parseInt(this.paper_info['venue']))) {
             return this.xml.evaluate(
                 `/collection/volume[@id="${this.paper_info['venue']}"]`,
                 this.xml,
