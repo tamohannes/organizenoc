@@ -102,6 +102,7 @@ class ArXiv extends Platform {
       paper_id: this.id,
       authors: [],
       categories: [],
+      doi: ""
     };
     entries.forEach((entry) => {
       switch (entry.tagName) {
@@ -135,6 +136,9 @@ class ArXiv extends Platform {
           break;
         case "category":
           metadata["categories"].push(entry.attributes.term.value);
+          break;
+        case "arxiv:doi":
+          metadata["doi"] = entry.innerHTML;
           break;
       }
     });

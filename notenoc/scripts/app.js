@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     default_papers_full_dir = pathJoin([
       storage_values.default_documents_dir,
       paper.get_project(),
-      new URL(platform.metadata["pdf_link"]).pathname.split("/").pop(),
+      `${platform.metadata.bib_key}.pdf`,
     ]);
     document.getElementById("document_path").value = default_papers_full_dir;
     document.getElementById("page_title").value = platform.metadata["title"];

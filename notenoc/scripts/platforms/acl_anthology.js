@@ -35,11 +35,20 @@ class ACLAnthology extends Platform {
 
     parsePaperInfoFromURL() {
         const u = new URL(this.tab_url);
-        const keys = u.pathname.split("/")[1].split("-")[1]
+        const id = u.pathname.split("/")[1]
+        const keys = id.split("-")[1].toString()
 
-        return {
-            "id": keys.split(".")[1],
-            "venue": keys.split(".")[0],
+        const re = new RegExp("[A-Z][0-9]{2}");
+        if (re.exec(id) === null) {
+            return {
+                "id": keys.split(".")[1],
+                "venue": keys.split(".")[0],
+            }
+        } else {
+            return {
+                "id": keys.substring(1),
+                "venue": keys.substring(0, 1)
+            }
         }
     }
 
@@ -73,19 +82,26 @@ class ACLAnthology extends Platform {
     }
 
     getPaperPublicationDate() {
-        return this.xml.evaluate(
-            `/collection/volume[@id="${this.paper_info['venue']}"]`,
-            this.xml,
-            null,
-            XPathResult.FIRST_ORDERED_NODE_TYPE,
-            null,
-        ).singleNodeValue.getAttribute("ingest-date")
+        if (isNaN(parseInt(this.paper_info['venue']))) {
+            return this.xml.evaluate(
+                `/collection/volume[@id="${this.paper_info['venue']}"]`,
+                this.xml,
+                null,
+                XPathResult.FIRST_ORDERED_NODE_TYPE,
+                null,
+            ).singleNodeValue.getAttribute("ingest-date")
+        } else {
+            const u = new URL(this.tab_url);
+            const id = u.pathname.split("/")[1].split("-")[0]
+            return `20${id.substring(1)}`
+        }
     }
 
     getMetadataFromXML() {
         let metadata = {
             authors: [],
             categories: [],
+            doi: "",
         };
 
         this.paperdata.childNodes.forEach((entry) => {
