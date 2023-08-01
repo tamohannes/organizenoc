@@ -4,8 +4,6 @@ import requests
 import json
 from datetime import datetime
 
-from document import CONTENT_TYPES
-
 
 class Notion:
     def __init__(self) -> None:
@@ -53,7 +51,7 @@ class Notion:
                             {
                                 "type": "text",
                                 "text": {"content": "Notes from the document"},
-                                "annotations": {"color": "green_background"},
+                                "annotations": {},
                             }
                         ]
                     },
@@ -103,9 +101,7 @@ class Notion:
                                 "text": {
                                     "content": note["content"],
                                 },
-                                "annotations": CONTENT_TYPES[note["type"]][
-                                    "annotations"
-                                ],
+                                "annotations": {"color": note["color"]}
                             },
                         ]
                     },
