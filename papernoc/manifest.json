@@ -6,7 +6,7 @@
     "author": "Hovhannes Tamoyan",
     "action": {
         "default_popup": "index.html",
-        "default_title": "Papernoc",
+        "default_title": "PaperNoc",
         "default_icon": "resources/icon.png"
     },
     "permissions": [

@@ -1,6 +1,6 @@
-from typing import List, Tuple, Dict
-import fitz
+from typing import Dict, List, Tuple
 
+import fitz
 
 CONTENT_TYPES: List[str] = ["Highlight", "Underline"]
 
@@ -9,7 +9,7 @@ RGB_TO_NAME: Dict[tuple, str] = {
     (124, 200, 103): "green",
     (105, 175, 240): "blue",
     (251, 91, 137): "red",
-    (200, 133, 218): "purple"
+    (200, 133, 218): "purple",
 }
 
 DEBUG_MODE = False
@@ -50,7 +50,14 @@ class Document:
             if annot_name in CONTENT_TYPES:
                 content, y_pos = self._parse_highlight(annot)
                 highlights.append(
-                    {"type": annot_name, "content": content, "y_pos": y_pos, "color": RGB_TO_NAME[tuple(int(i*255) for i in annot.colors["stroke"])]}
+                    {
+                        "type": annot_name,
+                        "content": content,
+                        "y_pos": y_pos,
+                        "color": RGB_TO_NAME[
+                            tuple(int(i * 255) for i in annot.colors["stroke"])
+                        ],
+                    }
                 )
 
             annot = annot.next

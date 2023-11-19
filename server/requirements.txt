@@ -2,4 +2,6 @@ wget
 PyMuPDF
 fitz
 fastapi
+llama_index
+openai
 uvicorn[standard]

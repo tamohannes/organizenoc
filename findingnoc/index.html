@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div id="error"></div>
+
+        <div class="card" style="width: 30rem;">
+            <div class="card-content">
+              <div class="media is-align-items-center">
+                <div class="media-content">
+                    <p class="is-size-4">🔍 FindingNoc</p>
+                </div>
+                <div class="media-right">
+                    <span id="notion_tag" class="tag is-light">Notion</span>
+                    <span id="arxiv_tag" class="tag is-light">arXiv</span>
+                    <span id="aclanthology_tag" class="tag is-light">ACL Anthology</span>
+                </div>
+              </div>
+        
+            <div style="text-align: center;">
+                <input id="prompt" class="input custom-placeholder mb-3" type="text" value="What are the main takeaways, key findings, and potential future works of '<PAPER>'?" />
+                <button class="button is-success" id="add_button">
+                    <span class="icon is-small"><i class="fas fa-check fa-flip"></i></span>
+                    <span>find</span>
+                </button>
+            </div>
+            </div>
+          </div>
+
+        <script src="scripts/app.js"></script>
+        <script src="scripts/paper.js"></script>
+        <script src="resources/keys.js"></script>
+        <script src="scripts/platform.js"></script>
+        <script src="scripts/platforms/arxiv.js"></script>
+        <script src="scripts/platforms/acl_anthology.js"></script>
+        <script src="scripts/notion.js"></script>
+        <script src="scripts/helpers.js"></script>
+        <script src="scripts/fa.js"></script>
+    </body>
+</html>

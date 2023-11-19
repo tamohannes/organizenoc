@@ -2,5 +2,5 @@ __pycache__/
 .vscode
 .DS_Store
 server/config.ini
-papernoc/resources/keys.js
-notenoc/resources/keys.js
+*/resources/keys.js
+.papers

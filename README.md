@@ -1,22 +1,35 @@
-# organizenoc 🗂️
+# OrganizeNoc 🗂️
 
-These Chromium extensions enable users to seamlessly add and update research paper information in their Notion database, making it easy to keep track of all their academic materials in one organized location.
+OrganizeNoc is a suite of extensions designed to elevate researchers' experiences in field exploration, facilitating the seamless addition, querying, and extraction of insights from papers.
 
-Organizenoc currently comprises two extensions: papernoc and notenoc. These extensions offer convenient features for researchers, such as extracting information from a research paper's website and saving it in a Notion database. Additionally, they allow users to download the PDF of the paper and automatically extract any highlights made on the document to the Notion database, neatly organizing all research-related information in one place.
+This collection of extensions empowers researchers to effortlessly incorporate and update paper information in their Notion database, streamlining the process of keeping all academic materials neatly organized in one centralized location.
 
-While the extensions can be used separately, we strongly recommend using both of them together for the optimal user experience. When used in conjunction, the extensions provide a seamless and efficient way to manage research paper information in Notion.
+OrganizeNoc consists of three extensions: PaperNoc, NoteNoc, and FindingNoc. These extensions offer convenient features for researchers, including:
+- Extracting all metadata (title, authors, abstract, bibKey, etc.) from a research paper and saving it in a Notion database.
+- Downloading the PDF of the paper and automatically extracting any highlights made on the document to the Notion database.
+- Querying questions about the paper using GPT and storing the responses in the Notion database.
 
-## papernoc 📚
+While the extensions can be used independently, we highly recommend using all of them together for the optimal user experience. When used in conjunction, the extensions provide a seamless and efficient way to manage research paper information in Notion.
 
-This Chromium extension enables users to easily add and update `arXiv` and `ACL Anthology` paper information in their Notion database, streamlining the process of managing academic materials and keeping all research-related information in one centralized location.
+
+## PaperNoc 📚
+
+This extension enables users to easily add and update `arXiv` and `ACL Anthology` paper information in their Notion database, streamlining the process of managing academic materials and keeping all research-related information in one centralized location.
 
 <img alt="papernoc demostration" src="demos/papernoc_demo.gif"/>
 
-## notenoc 📔
+## NoteNoc 📝
 
-This Chromium extension allows users to extract highlights from a PDF file, which can be downloaded using the papernoc extension, and automatically add them to their Notion database. This feature provides a convenient and efficient way to manage research-related information in one centralized location.
+This extension allows users to extract highlights from a PDF file, which can be downloaded using the papernoc extension, and automatically add them to their Notion database. This feature provides a convenient and efficient way to manage research-related information in one centralized location.
 
 <img alt="notenoc demostration" src="demos/notenoc_demo.gif"/>
+
+## FindingNoc 🔍
+
+This extension empowers users to pose questions about the paper, leveraging LlamIndex's ArxivToolSpec module. The responses to these queries will be neatly organized and stored in the body of the paper item.
+
+<img alt="findingnoc demostration" src="demos/findingnoc_demo.gif"/>
+
 
 # Setup steps 🐾
 

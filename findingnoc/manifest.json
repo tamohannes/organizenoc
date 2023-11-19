@@ -1,0 +1,20 @@
+{
+  "name": "findingnoc",
+  "version": "1.0.0",
+  "description": "ask questions about the paper and store the response in notion",
+  "manifest_version": 3,
+  "author": "Hovhannes Tamoyan",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "FindingNoc",
+    "default_icon": "resources/icon.png"
+  },
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.notion.com/v1/*"
+  ]
+}

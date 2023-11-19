@@ -1,8 +1,9 @@
-from typing import Dict, Any, List
 import configparser
-import requests
 import json
 from datetime import datetime
+from typing import Any, Dict, List
+
+import requests
 
 
 class Notion:
@@ -57,9 +58,8 @@ class Notion:
                     },
                 },
                 {
-                    "object": "block",
-                    "type": "paragraph",
-                    "paragraph": {
+                    "type": "toggle",
+                    "toggle": {
                         "rich_text": [
                             {
                                 "type": "mention",
@@ -68,7 +68,8 @@ class Notion:
                                     "date": {"start": str(datetime.now())},
                                 },
                             }
-                        ]
+                        ],
+                        "children": [],
                     },
                 },
             ]
@@ -88,7 +89,7 @@ class Notion:
                     ]
                 },
             }
-            request_body["children"].append(page_content)
+            request_body["children"][1]["toggle"]["children"].append(page_content)
 
             for note in notes[page_number]:
                 note_content = {
@@ -101,13 +102,93 @@ class Notion:
                                 "text": {
                                     "content": note["content"],
                                 },
-                                "annotations": {"color": note["color"]}
+                                "annotations": {"color": note["color"]},
                             },
                         ]
                     },
                 }
 
-                request_body["children"].append(note_content)
+                request_body["children"][1]["toggle"]["children"].append(note_content)
+
+        response = requests.patch(
+            f"https://api.notion.com/v1/blocks/{paper['id']}/children",
+            headers=headers,
+            json=request_body,
+        )
+
+        if response.status_code == 200:
+            return True
+        return False
+
+    def add_page_findings(self, paper: Dict[str, Any], findings: str, prompt: str):
+        print("trying to add")
+        headers = {
+            "Authorization": f"Bearer {self.notion_key}",
+            "Content-Type": "application/json",
+            "Notion-Version": "2022-06-28",
+        }
+
+        request_body = {
+            "children": [
+                {
+                    "object": "block",
+                    "type": "heading_2",
+                    "heading_2": {
+                        "rich_text": [
+                            {
+                                "type": "text",
+                                "text": {"content": "Ask AI"},
+                                "annotations": {},
+                            }
+                        ]
+                    },
+                },
+                {
+                    "object": "block",
+                    "type": "paragraph",
+                    "paragraph": {
+                        "rich_text": [
+                            {
+                                "type": "text",
+                                "text": {
+                                    "content": prompt,
+                                },
+                            }
+                        ]
+                    },
+                },
+                {
+                    "type": "toggle",
+                    "toggle": {
+                        "rich_text": [
+                            {
+                                "type": "mention",
+                                "mention": {
+                                    "type": "date",
+                                    "date": {"start": str(datetime.now())},
+                                },
+                            }
+                        ],
+                        "children": [
+                            {
+                                "type": "paragraph",
+                                "paragraph": {
+                                    "rich_text": [
+                                        {
+                                            "type": "text",
+                                            "text": {
+                                                "content": findings,
+                                            },
+                                            "annotations": {"bold": True},
+                                        },
+                                    ]
+                                },
+                            },
+                        ],
+                    },
+                },
+            ]
+        }
 
         response = requests.patch(
             f"https://api.notion.com/v1/blocks/{paper['id']}/children",
