@@ -38,17 +38,24 @@ class ACLAnthology extends Platform {
         const id = u.pathname.split("/")[1]
         const keys = id.split("-")[1].toString()
 
-        const re = new RegExp("[A-Z][0-9]{2}");
-        if (re.exec(id) === null) {
+        // 2023.acl-short.97
+        // 2021.ranlp-1.68
+        const re1 = /\d{4}\.[a-zA-Z0-9-]+.\d+/;
+        // D17-1109/
+        const re2 = /^[A-Z]\d{2}-\d+$/;
+
+        if (re1.test(id)) {
             return {
                 "id": keys.split(".")[1],
                 "venue": keys.split(".")[0],
-            }
-        } else {
+            };
+        } else if (re2.test(id)) {
             return {
                 "id": keys.substring(1),
                 "venue": keys.substring(0, 1)
-            }
+            };
+        } else {
+            throw Error("Unknown format!");
         }
     }
 
@@ -82,7 +89,16 @@ class ACLAnthology extends Platform {
     }
 
     getPaperPublicationDate() {
-        if (isNaN(parseInt(this.paper_info['venue']))) {
+        const u = new URL(this.tab_url);
+        const id = u.pathname.split("/")[1]
+
+        // 2023.acl-short.97
+        // 2021.ranlp-1.68
+        const re1 = /\d{4}\.[a-zA-Z0-9-]+.\d+/;
+        // D17-1109/
+        const re2 = /^[A-Z]\d{2}-\d+$/;
+
+        if (re1.test(id)) {
             return this.xml.evaluate(
                 `/collection/volume[@id="${this.paper_info['venue']}"]`,
                 this.xml,
@@ -90,10 +106,12 @@ class ACLAnthology extends Platform {
                 XPathResult.FIRST_ORDERED_NODE_TYPE,
                 null,
             ).singleNodeValue.getAttribute("ingest-date")
-        } else {
+        } else if (re2.test(id)) {
             const u = new URL(this.tab_url);
             const id = u.pathname.split("/")[1].split("-")[0]
             return `20${id.substring(1)}`
+        } else {
+            throw Error("Unknown format!");
         }
     }
 
