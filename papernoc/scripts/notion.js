@@ -17,29 +17,16 @@ class Notion {
 
   async getProjects() {
     const response = await fetch(
-      `https://api.notion.com/v1/databases/${this.databaseId}/query`,
+      `https://api.notion.com/v1/databases/${this.databaseId}`,
       {
-        method: "POST",
         headers: new Headers({
           Authorization: `Bearer ${this.authToken}`,
           "Notion-Version": "2021-05-13",
         }),
       }
     ).catch((err) => console.log(err));
-
     const searchResultData = await response.json();
-    let projects = [];
-    searchResultData["results"]
-      .filter((elem) => elem["properties"]["Project"] !== undefined)
-      .forEach((elem) =>
-        projects.push({
-          id: elem["properties"]["Project"]["select"]["id"],
-          name: elem["properties"]["Project"]["select"]["name"],
-        })
-      );
-
-    let ids = projects.map((item) => item["id"]);
-    return projects.filter((elem, index) => ids.indexOf(elem["id"]) === index);
+    return searchResultData["properties"]["Project"]["select"]["options"];
   }
 
   async getPaperByTitle(metadata) {
