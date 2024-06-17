@@ -5,8 +5,8 @@ class ACLAnthology extends Platform {
     static isValidURL(tab_url) {
         let is_valid = ACLAnthology._isValidURL(tab_url);
         if (is_valid) {
-            // document.getElementById("aclanthology_tag").classList.add("is-success");
-            // document.getElementById("aclanthology_tag").classList.remove("is-danger");
+            document.getElementById("aclanthology_tag").classList.add("is-success");
+            document.getElementById("aclanthology_tag").classList.remove("is-danger");
 
             document.getElementById("add_button").disabled = false;
             document.getElementById("arxiv_tag").style.display = "none";

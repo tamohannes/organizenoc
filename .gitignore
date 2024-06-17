@@ -2,5 +2,5 @@ __pycache__/
 .vscode
 .DS_Store
 server/config.ini
-*/resources/keys.js
+*/resources/configs.js
 .papers

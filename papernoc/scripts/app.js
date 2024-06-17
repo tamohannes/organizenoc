@@ -22,6 +22,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("present_message").style.display = "";
       document.getElementById("paper_title").innerHTML = paper.get_title();
 
+      paper.is_added().then(status => {
+        console.log(status)
+        if (status) {
+          document.getElementById("download_paper_container").style.display = "none";
+        }
+      })
+
       document.getElementById("update_button").style.display = "";
       document.getElementById("update_button").addEventListener("click", () => {
         paper.update();

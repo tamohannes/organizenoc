@@ -1,11 +1,11 @@
 function save_options() {
-  let default_documents_dir = document.getElementById(
-    "default_documents_dir"
+  let documents_root_dir = document.getElementById(
+    "documents_root_dir"
   ).value;
 
   chrome.storage.sync.set(
     {
-      default_documents_dir: default_documents_dir,
+      documents_root_dir: documents_root_dir,
     },
     function () {
       var status = document.getElementById("status");
@@ -20,11 +20,11 @@ function save_options() {
 function default_options() {
   chrome.storage.sync.get(
     {
-      default_documents_dir: "/Users/user/Downloads",
+      documents_root_dir: default_documents_dir,
     },
     function (items) {
-      document.getElementById("default_documents_dir").value =
-        items.default_documents_dir;
+      document.getElementById("documents_root_dir").value =
+        items.documents_root_dir;
     }
   );
 }

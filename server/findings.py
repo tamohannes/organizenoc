@@ -1,9 +1,8 @@
 import configparser
 
 import openai
-from llama_hub.tools.arxiv.base import ArxivToolSpec
-from llama_index.agent import OpenAIAgent
-import time
+from llama_index.tools.arxiv import ArxivToolSpec
+from llama_index.agent.openai import OpenAIAgent
 
 config = configparser.ConfigParser()
 config.read("config.ini")

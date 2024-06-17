@@ -1,7 +1,8 @@
-wget
-PyMuPDF
-fitz
-fastapi
-llama_index
-openai
-uvicorn[standard]
+wget==3.2
+PyMuPDF==1.23.26
+fitz==0.0.1.dev2
+fastapi==0.110.0
+llama-index==0.10.14
+llama-index-tools-arxiv==0.1.3
+openai==1.13.3
+uvicorn==0.27.1

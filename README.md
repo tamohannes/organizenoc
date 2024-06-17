@@ -44,4 +44,4 @@ To set up papernoc and notenoc:
 - Create a new integration app in Notion and give it a name of your choice. For example, you could name it `papernoc`. You can create a new integration app at https://www.notion.so/my-integrations.
 - Copy the `Integration Token` that is provided, as you will need it later.
 - Navigate to your Notion database and click on `three dots -> connections -> papernoc` to grant the integration permission to add and modify content in the database.
-- Create a `keys.js` file in the resources directory and fill in the integration key (copied earlier) and the database ID. An example file for this is provided in `keys-example.js`.
+- Create a `configs.js` file in the resources directory and fill in the integration key (copied earlier) and the database ID. An example file for this is provided in `configs-example.js`.

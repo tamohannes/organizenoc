@@ -54,13 +54,22 @@ class ItemPaper(BaseModel):
 def save_paper(item: ItemPaper):
     try:
         os.makedirs(item.file_dir, exist_ok=True)
-        file_path = Path(item.file_dir).joinpath(
-            item.file_name + Path(item.pdf_link).suffix
-        )
+        file_path = Path(item.file_dir).joinpath(item.file_name + Path(item.pdf_link).suffix)
 
         if not file_path.is_file():
             wget.download(url=item.pdf_link, out=str(file_path))
         return JSONResponse(content={"status": True})
+    except:
+        return JSONResponse(content={"status": False})
+
+
+@app.post("/is_saved")
+def get_findings(item: ItemPaper):
+    try:
+        file_path = Path(item.file_dir).joinpath(item.file_name + Path(item.pdf_link).suffix)
+
+        status = file_path.is_file()
+        return JSONResponse(content={"status": status})
     except:
         return JSONResponse(content={"status": False})
 

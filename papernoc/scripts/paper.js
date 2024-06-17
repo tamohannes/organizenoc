@@ -3,6 +3,7 @@ class Paper {
     try {
       this.notion = notion;
       this.metadata = metadata;
+      this.serverPort = server_port
     } catch (err) {
       document.getElementById("error").innerHTML = err;
       console.log(err);
@@ -13,6 +14,44 @@ class Paper {
     this.paper = await this.notion.getPaperByTitle(this.metadata);
 
     return this.paper ? true : false;
+  }
+
+  async is_added() {
+    console.log(this.paper)
+
+    let selected_project_name =
+      document.getElementById("project_select").options[
+        document.getElementById("project_select").selectedIndex
+      ].text;
+    let project_name =
+      selected_project_name == "" ? this.get_project() : selected_project_name;
+
+
+    let storage_values = await chrome.storage.sync.get({
+      default_documents_dir: "/Users/user/Downloads",
+    });
+
+    let body = {
+      file_dir: storage_values.default_documents_dir + "/" + project_name,
+      file_name: this.metadata["bib_key"],
+      pdf_link: this.metadata["pdf_link"],
+    };
+
+    const response = await fetch(`http://127.0.0.1:${this.serverPort}/is_saved`, {
+      method: "POST",
+      headers: new Headers({
+        // "Authorization": "Bearer MY_KEY",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      }),
+      body: JSON.stringify(body),
+    }).catch((err) => {
+      document.getElementById("error").innerHTML = err;
+      console.log(err);
+    });
+
+    const responseData = await response.json();
+    return responseData["status"];
   }
 
   get_title() {
@@ -94,7 +133,7 @@ class Paper {
       file_name: this.metadata["bib_key"],
       pdf_link: this.metadata["pdf_link"],
     };
-    await fetch("http://127.0.0.1:8124/save_paper", {
+    await fetch(`http://127.0.0.1:${this.serverPort}/save_paper`, {
       method: "POST",
       headers: new Headers({
         // "Authorization": "Bearer MY_KEY",
