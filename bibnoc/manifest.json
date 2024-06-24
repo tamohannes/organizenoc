@@ -1,0 +1,25 @@
+{
+    "name": "bibnoc",
+    "version": "1.0.0",
+    "description": "export project bibTexs from notion",
+    "manifest_version": 3,
+    "author": "Hovhannes Tamoyan",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "BibNoc",
+        "default_icon": "resources/icon.png"
+    },
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://api.notion.com/v1/*"
+    ],
+    "options_page": "options.html",
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": false
+    }
+}
