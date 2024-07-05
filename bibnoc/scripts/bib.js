@@ -14,7 +14,6 @@ class Bib {
 
             this.project_id = document.getElementById("project_select");
             this.project_title = this.project_id.options[this.project_id.selectedIndex].text;
-            console.log(this.project_title);
 
             let papers = await this.notion.getPapersByProject(this.project_title)
 
@@ -23,8 +22,6 @@ class Bib {
             let bibTexs = bibTexs_rich_text.filter(item => item !== undefined && item.plain_text !== "");
 
             document.getElementById("info").innerHTML = "Exporting " + bibTexs.length + " out of " + papers.length + " papers to clipboard";
-
-            console.log(bibTexs);
 
             let bibTex = bibTexs.map(item => item.plain_text).join("\n\n")
 

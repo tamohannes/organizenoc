@@ -4,6 +4,7 @@ class Paper {
       this.notion = notion;
       this.metadata = metadata;
       this.serverPort = server_port
+      this.documents_root_dir = default_root_dir
     } catch (err) {
       document.getElementById("error").innerHTML = err;
       console.log(err);
@@ -17,8 +18,6 @@ class Paper {
   }
 
   async is_added() {
-    console.log(this.paper)
-
     let selected_project_name =
       document.getElementById("project_select").options[
         document.getElementById("project_select").selectedIndex
@@ -28,11 +27,11 @@ class Paper {
 
 
     let storage_values = await chrome.storage.sync.get({
-      default_documents_dir: "/Users/user/Downloads",
+      documents_root_dir: this.documents_root_dir,
     });
 
     let body = {
-      file_dir: storage_values.default_documents_dir + "/" + project_name,
+      file_dir: storage_values.documents_root_dir + "/" + project_name,
       file_name: this.metadata["bib_key"],
       pdf_link: this.metadata["pdf_link"],
     };
@@ -125,11 +124,11 @@ class Paper {
       selected_project_name == "" ? this.get_project() : selected_project_name;
 
     let storage_values = await chrome.storage.sync.get({
-      default_documents_dir: "/Users/user/Downloads",
+      documents_root_dir: this.documents_root_dir,
     });
 
     let body = {
-      file_dir: storage_values.default_documents_dir + "/" + project_name,
+      file_dir: storage_values.documents_root_dir + "/" + project_name,
       file_name: this.metadata["bib_key"],
       pdf_link: this.metadata["pdf_link"],
     };

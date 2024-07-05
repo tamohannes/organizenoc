@@ -20,7 +20,7 @@ function save_options() {
 function default_options() {
   chrome.storage.sync.get(
     {
-      documents_root_dir: default_documents_dir,
+      documents_root_dir: default_root_dir,
     },
     function (items) {
       document.getElementById("documents_root_dir").value =

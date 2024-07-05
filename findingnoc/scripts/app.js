@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     let storage_values = await chrome.storage.sync.get({
-      default_documents_dir: "",
+      documents_root_dir: default_root_dir,
     });
 
     default_papers_full_dir = pathJoin([
-      storage_values.default_documents_dir,
+      storage_values.documents_root_dir,
       paper.get_project(),
       `${platform.metadata.bib_key}.pdf`,
     ]);

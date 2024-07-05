@@ -30,7 +30,6 @@ class Notion {
   }
 
   async getPapersByProject(project_title) {
-    console.log(project_title)
     let requestBody = {
       filter: {
         property: "Project",
