@@ -4,10 +4,11 @@ OrganizeNoc is a suite of extensions designed to elevate researchers' experience
 
 This collection of extensions empowers researchers to effortlessly incorporate and update paper information in their Notion database, streamlining the process of keeping all academic materials neatly organized in one centralized location.
 
-OrganizeNoc consists of three extensions: PaperNoc, NoteNoc, and FindingNoc. These extensions offer convenient features for researchers, including:
+OrganizeNoc consists of four extensions: PaperNoc, NoteNoc, FindingNoc and BibNoc. These extensions offer convenient features for researchers, including:
 - Extracting all metadata (title, authors, abstract, bibKey, etc.) from a research paper and saving it in a Notion database.
 - Downloading the PDF of the paper and automatically extracting any highlights made on the document to the Notion database.
 - Querying questions about the paper using GPT and storing the responses in the Notion database.
+- Exporting the BibTeX of project papers to have a quick and easy starting point for paper writing.
 
 While the extensions can be used independently, we highly recommend using all of them together for the optimal user experience. When used in conjunction, the extensions provide a seamless and efficient way to manage research paper information in Notion.
 
@@ -29,6 +30,12 @@ This extension allows users to extract highlights from a PDF file, which can be 
 This extension empowers users to pose questions about the paper, leveraging LlamIndex's ArxivToolSpec module. The responses to these queries will be neatly organized and stored in the body of the paper item.
 
 <img alt="findingnoc demostration" src="demos/findingnoc_demo.gif"/>
+
+## BibNoc 📦
+
+This extension assists users in quickly starting the paper writing process by easily exporting project papers BibTeX entries.
+
+<img alt="bibnoc demostration" src="demos/bibnoc_demo.gif"/>
 
 
 # Setup steps 🐾
