@@ -1,6 +1,6 @@
 # OrganizeNoc 🗂️
 
-OrganizeNoc is a suite of extensions designed to elevate researchers' experiences in field exploration, facilitating the seamless addition, querying, and extraction of insights from papers.
+OrganizeNoc is a suite of Chromium extensions designed to elevate researchers' experiences in field exploration, facilitating the seamless addition, querying, and extraction of insights from papers.
 
 This collection of extensions empowers researchers to effortlessly incorporate and update paper information in their Notion database, streamlining the process of keeping all academic materials neatly organized in one centralized location.
 
@@ -38,17 +38,57 @@ This extension assists users in quickly starting the paper writing process by ea
 <img alt="bibnoc demostration" src="demos/bibnoc_demo.gif"/>
 
 
-# Setup steps 🐾
 
-To set up the backend server:
+# Installation
 
-- Navigate to the `server` directory.
-- Run `pip install -r requirements.txt` to install the necessary requirements.
-- Once the requirements are installed, start the server by running the following command: `uvicorn main:app --reload --port 8214`.
+## Backend Server Setup
 
-To set up papernoc and notenoc:
+Follow these steps to set up the backend server:
 
-- Create a new integration app in Notion and give it a name of your choice. For example, you could name it `papernoc`. You can create a new integration app at https://www.notion.so/my-integrations.
-- Copy the `Integration Token` that is provided, as you will need it later.
-- Navigate to your Notion database and click on `three dots -> connections -> papernoc` to grant the integration permission to add and modify content in the database.
-- Create a `configs.js` file in the resources directory and fill in the integration key (copied earlier) and the database ID. An example file for this is provided in `configs-example.js`.
+1. **Navigate to the Server Directory**: Change your current working directory to the `server` folder.
+2. **Install Dependencies**: Execute the following command to install the necessary requirements:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Start the Server**: Launch the server by running:
+   ```bash
+   uvicorn main:app --reload --port 8214
+   ```
+
+## Notion Integration
+
+To integrate your Notion database with the extensions, perform the following steps:
+
+1. **Create a Notion Integration App**:
+   - Visit [Notion Integrations](https://www.notion.so/my-integrations) and create a new integration app. You can name it something like `organizenoc`.
+   - Copy the `Integration Token` provided after creation for later use.
+
+2. **Configure Notion Permissions**:
+   - Go to your Notion database, click on `three dots -> connections -> organizenoc` to allow the newly created integration to add and modify content.
+
+3. **Setup Configuration File**:
+   - Create a `configs.js` file within the `resources` directory.
+   - Populate this file with the `notion_key`, the database ID, the server port (which we set to `8214` earlier) and the other configs as shown in the provided `configs-example.js`.
+
+These steps will ensure a seamless integration of your Notion database with the extensions.
+
+# Safari Support
+
+To enable the use of extensions on Safari, follow these steps to convert each extension into the Safari format:
+
+1. **Install Xcode**: Ensure that Xcode is installed on your macOS machine.
+2. **Convert the Extension**: Use the command below to convert your extension to the Safari format. Replace `PATH_TO_AN_EXTENSION` with the actual path to the extension you want to convert:
+
+   ```bash
+   xcrun safari-web-extension-converter PATH_TO_AN_EXTENSION
+   ```
+
+3. **Build the Extension in Xcode**: An Xcode window will appear after running the command. Build the project for macOS within Xcode.
+4. **Enable Unsigned Extensions**:
+   - Open Safari and go to `Settings`.
+   - Navigate to the `Developer` tab and enable `Allow unsigned extensions`.
+5. **Activate the Extension**:
+   - In the `Extensions` tab of your settings, you will find your newly available extensions.
+   - Activate the desired extensions and start using them in Safari.
+
+Enjoy enhancing your Safari experience with your new extensions!
