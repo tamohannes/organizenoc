@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         paper.update();
       });
     } else {
-      let projects = await notion.getProjects();
+      let projects = await notion.getActiveProjects();
       projects.forEach((elem) => {
         let newOption = document.createElement("option");
         let optionText = document.createTextNode(elem['name']);

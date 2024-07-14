@@ -29,6 +29,11 @@ class Notion {
     return searchResultData["properties"]["Project"]["select"]["options"];
   }
 
+  async getActiveProjects() {
+    let projects = await this.getProjects();
+    return projects.filter(item => item.color === 'green')
+  }
+
   async getPapersByProject(project_title) {
     let requestBody = {
       filter: {

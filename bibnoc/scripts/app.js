@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await bib.init(notion);
 
   try {
-    let projects = await notion.getProjects();
+    let projects = await notion.getActiveProjects();
     projects.forEach((elem) => {
       let newOption = document.createElement("option");
       let optionText = document.createTextNode(elem['name']);
