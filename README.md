@@ -1,5 +1,7 @@
 # OrganizeNoc 🗂️
 
+<sub>Crafted with care by a fellow researcher, for researchers like you 😊</sub>
+
 OrganizeNoc is a suite of Chromium extensions designed to elevate researchers' experiences in field exploration, facilitating the seamless addition, querying, and extraction of insights from papers.
 
 This collection of extensions empowers researchers to effortlessly incorporate and update paper information in their Notion database, streamlining the process of keeping all academic materials neatly organized in one centralized location.
