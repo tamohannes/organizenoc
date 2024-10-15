@@ -36,6 +36,7 @@ This extension empowers users to pose questions about the paper, leveraging Llam
 ## BibNoc 📦
 
 This extension assists users in quickly starting the paper writing process by easily exporting project papers BibTeX entries.
+Just select a project, click Export, and all the entries will be copied to your clipboard.
 
 <img alt="bibnoc demostration" src="demos/bibnoc_demo.gif"/>
 
